@@ -5,21 +5,21 @@
 class GitZen < Formula
   desc "An interactive, fuzzy-searchable git branch manager"
   homepage "https://github.com/achill06/git-zen"
-  version "1.0.2"
+  version "1.0.3"
   license "MIT"
 
   on_macos do
     on_intel do
-      url "https://github.com/achill06/git-zen/releases/download/v1.0.2/git-zen_Darwin_x86_64.tar.gz"
-      sha256 "49c829aef07ad6d5f20e0da2ef236b774d74e4a12669a36c64d9a0495557954a"
+      url "https://github.com/achill06/git-zen/releases/download/v1.0.3/git-zen_Darwin_x86_64.tar.gz"
+      sha256 "54fbdb318bf8f314585ceef544918c68111b72470805abd4aa29d47d3dd03408"
 
       def install
         bin.install "git-zen"
       end
     end
     on_arm do
-      url "https://github.com/achill06/git-zen/releases/download/v1.0.2/git-zen_Darwin_arm64.tar.gz"
-      sha256 "fa0ae408eaa252dbe16a9af9d8b60342256f5ce26dfa80c37a974cfd313d313b"
+      url "https://github.com/achill06/git-zen/releases/download/v1.0.3/git-zen_Darwin_arm64.tar.gz"
+      sha256 "fe7a9f2462bcfd454efa192b80354d92ad1ae44027bbcf1582dbe69af7ebe8ef"
 
       def install
         bin.install "git-zen"
@@ -30,8 +30,8 @@ class GitZen < Formula
   on_linux do
     on_intel do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/achill06/git-zen/releases/download/v1.0.2/git-zen_Linux_x86_64.tar.gz"
-        sha256 "ac77ec206895b0bacf9d6662c1f60cfedd893450989d1ae90147a646c6cec62c"
+        url "https://github.com/achill06/git-zen/releases/download/v1.0.3/git-zen_Linux_x86_64.tar.gz"
+        sha256 "4fce07ce0270fb1bbeca49f03e9bd99dce4755a43ea21e544cb68d508b72b46f"
 
         def install
           bin.install "git-zen"
@@ -40,13 +40,17 @@ class GitZen < Formula
     end
     on_arm do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/achill06/git-zen/releases/download/v1.0.2/git-zen_Linux_arm64.tar.gz"
-        sha256 "b4d792b6e126d0529a7096ec44a4928f4109b2df6a037372d276473d03194692"
+        url "https://github.com/achill06/git-zen/releases/download/v1.0.3/git-zen_Linux_arm64.tar.gz"
+        sha256 "19bd89ee9a23e9bcd1cf2772f7881f36a1fe6451e40b1e8e86f4b83b5b9a2a54"
 
         def install
           bin.install "git-zen"
         end
       end
     end
+  end
+
+  def post_install
+    generate_completions_from_executable(bin/"git-zen", "completion")
   end
 end
